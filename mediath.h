@@ -17,6 +17,7 @@
 #include "DVD.h"
 #include "VHS.h"
 #include "RessourceNum.h"
+#include "Login.h"
 
 
 using namespace std;
@@ -29,7 +30,7 @@ class Mediatheque
     void add();
     void loadM();
     void reLoad();
-    void saveM();
+    void saveM(LoginManager *user);
     void showM();
     void search();
     void clear();
@@ -37,7 +38,7 @@ class Mediatheque
     void deleteId();
     void list() ;
     int quit(Mediatheque *M);
-    int checkitem(string itemID, string Filename);
+    int checkItem(string itemID, string Filename);
    
 
     vector<Ressource*> _objects;

@@ -1,7 +1,7 @@
 #include "mediath.h"
 
 int searchWarning = 1; // if equals 1, show switching from library database to research data base warning
-int counter = 0; //usefull for defining item's id 
+int IdCounter = 0; //usefull for defining item's id 
 int loadCounter = 0;
 int Load = 0;
 
@@ -61,8 +61,8 @@ void Mediatheque::add()
             case 1:
                 Livre *livre;
                 livre = new Livre(0);
-                livre->setId("L" + to_string(counter));
-                counter++;
+                livre->setId(to_string(IdCounter));
+                IdCounter++;
                  _objects.push_back(livre);
                 break; 
             case 2:
@@ -278,31 +278,134 @@ void Mediatheque::reLoad()
 }
 
 
-void Mediatheque::saveM()
+void Mediatheque::saveM(LoginManager *user)
 {
- 
+    string decision;
     string Filename;
     cout << "Please type the text file name where you want to save current items :" <<endl;
     cin >> Filename;
 
-    cout << "Saving current items in the following text file :" << Filename <<endl;
-
-    if (_searchOn ==1)
+    ofstream Idfile("Id.txt");
+    if(Idfile)
     {
-        for (int i=0; i< _Recherche.size(); i++)
-        {
-            _Recherche.at(i)->save(Filename);
-        }
-    }
-    else
-    {
-        for (int i=0; i< _objects.size(); i++)
-        {
-            _objects.at(i)->save(Filename);
-        }
-    }
-    cout << "--------------------------------------" << endl;
+        Idfile << IdCounter <<endl;
     
+        Idfile.close() ;
+    }
+    else 
+    {
+        cout << "ERROR : Failed to open file : " << "Id.txt"<< endl ;
+    }
+
+    if (_searchOn == 1)
+    {
+            if (Filename == "items.txt")
+            {
+                cout << "You can't save search result to database file !" << endl;
+                cout << "--------------------------------------" << endl;
+                return;
+            }
+            else
+            {
+                std::ofstream ofs;
+                ofs.open(Filename, std::ofstream::out | std::ofstream::trunc);  // clearing text file
+                ofs.close();
+
+                cout << "Saving current items in the following text file :" << Filename <<endl;
+
+                for (int i=0; i< _Recherche.size(); i++)
+                {
+                    _Recherche.at(i)->save(Filename);
+                }
+                
+                cout << "Search result(s) has(have) been saved !" << endl;
+                cout << "--------------------------------------" << endl;
+                return;
+            } 
+    }
+    else if (_searchOn ==0)
+    {
+        if (user->access() == 0)
+        {
+            if (Filename == "items.txt")
+            {
+                cout << "You can't save search result to database file !" << endl;
+                return;
+            }
+            else
+            {
+                std::ofstream ofs;
+                ofs.open(Filename, std::ofstream::out | std::ofstream::trunc);  // clearing text file
+                ofs.close();
+
+                cout << "Saving current items in the following text file :" << Filename <<endl;
+
+                for (int i=0; i< _objects.size(); i++)
+                {
+                    _objects.at(i)->save(Filename);
+                }
+
+                cout << "\n The database has been saved !" << endl;
+                cout << "--------------------------------------" << endl;
+                return;
+                
+            } 
+        }
+        else if (user->access() == 1)
+        {
+            if (Filename == "items.txt")
+            {
+                cout << "Are you sure you want to update the database ? [Y]es or [N]o : ";
+                cin >> decision;
+                while(1)
+                {
+                    if (decision == "Y")
+                    {
+                        std::ofstream ofs;
+                        ofs.open(Filename, std::ofstream::out | std::ofstream::trunc);  // clearing text file
+                        ofs.close();
+
+                        for (int i=0; i< _objects.size(); i++)
+                        {
+                            _objects.at(i)->save(Filename);
+                        }
+
+
+                        cout << "\n The database has been updated !" << endl;
+                        cout << "--------------------------------------" << endl;
+                        return;
+                    } 
+                    else if (decision == "N")
+                    {
+                        cout << "Returning to the main menu." << endl;
+                        cout << "--------------------------------------" << endl;
+                        return;
+                    }
+                    else 
+                    {
+                        cout << "Please type a valid choice : ";
+                        cin >> decision;
+                    }
+                }
+            }
+            else if (Filename != "items.txt")
+            {
+                std::ofstream ofs;
+                ofs.open(Filename, std::ofstream::out | std::ofstream::trunc);  // clearing text file
+                ofs.close();
+
+                for (int i=0; i< _objects.size(); i++)
+                {
+                    _objects.at(i)->save(Filename);
+                }
+
+                cout << "\n The database has been saved !" << endl;
+                cout << "--------------------------------------" << endl;
+                return;
+            }
+        }
+
+    }  
 }
 
 
