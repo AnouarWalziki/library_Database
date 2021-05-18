@@ -1,7 +1,7 @@
 #include "Login.h"
 
 
-int flag =  0 ;
+int finish   =  0 ;
 
 LoginManager :: LoginManager()
 {
@@ -12,6 +12,7 @@ LoginManager :: LoginManager()
 void LoginManager::login() 
 {
     string decision ;
+
     cout << "Please enter password. \nPassword : "<< endl ;
     cin  >> _PasswordAttempt ;
 
@@ -19,11 +20,11 @@ void LoginManager::login()
     {
         if ( _PasswordAttempt == "123456789")
         {   
-            if (flag == 0)
+            if (finish == 0)
             {
                 cout << "You have logged in successfully " << endl ;
                 _access = 1 ; 
-                flag = 1 ;   
+                finish = 1 ;   
                 
             }
             return ;
@@ -48,9 +49,9 @@ void LoginManager::login()
             
         }   
     }
-    if (flag == 0 )
+    if (finish == 0 )
     {
-        flag = 1;
+        finish = 1;
         cout <<"Password wrong three times , Checking in as a client .." << endl ;
     }
     _access = 0 ;
@@ -86,12 +87,5 @@ int LoginManager::access()
     return _access ;
 }
 
-int main()
-{
-    LoginManager *app ;
-    app = new LoginManager ;
-    app->login() ;
-    //cout << app->access() << endl;
-    return 0;
-}
+
 
