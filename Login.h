@@ -13,6 +13,7 @@ class LoginManager
         LoginManager() ;
         void login() ;
         bool check(string word , string Filename ) ;
+        int access() ;
 
 
     private : 

@@ -51,6 +51,10 @@ bool LoginManager::check(string word , string Filename )
         return false ;
     }
 }
+int LoginManager::access()
+{
+    return _access ;
+}
 
 int main()
 {
