@@ -2,6 +2,7 @@
 
 int searchWarning = 1; // if equals 1, show switching from library database to research data base warning
 int counter = 0; //usefull for defining item's id 
+int loadCounter = 0;
 int Load = 0;
 
 Mediatheque::Mediatheque()
@@ -133,6 +134,7 @@ void Mediatheque::loadM()
                     livre = new Livre();
                     livre->load(_currentFile,position);
                     _objects.push_back(livre);
+                    loadCounter++;
                 }
 
                 if (type =="CD")
@@ -141,6 +143,7 @@ void Mediatheque::loadM()
                     cd = new CD();
                     cd->load(_currentFile,position);
                     _objects.push_back(cd);
+                    loadCounter++;
                 }
 
                 if (type =="DVD")
@@ -149,6 +152,7 @@ void Mediatheque::loadM()
                     dvd = new DVD();
                     dvd->load(_currentFile,position);
                     _objects.push_back(dvd);
+                    loadCounter++;
                 }
 
                 if (type == "Revue")
@@ -157,6 +161,7 @@ void Mediatheque::loadM()
                     revue = new Revue();
                     revue->load(_currentFile,position);
                     _objects.push_back(revue);
+                    loadCounter++;
                 }
 
                 if (type == "Revue")
@@ -165,6 +170,7 @@ void Mediatheque::loadM()
                     vhs = new VHS();
                     vhs->load(_currentFile,position);
                     _objects.push_back(vhs);
+                    loadCounter++;
                 }
             
             }
@@ -175,6 +181,16 @@ void Mediatheque::loadM()
         else
         {
             cout << "ERREUR: Impossible d'ouvrir le fichier : " << _currentFile << endl;
+        }
+
+        if (loadCounter != 0)
+        {
+            cout << loadCounter << " item(s) was(were) loaded!" << endl;
+
+        }
+        else
+        {
+            cout << "No item(s) was(were) loaded)!" << endl;
         }
     }
     cout << "--------------------------------------" << endl;
@@ -378,12 +394,12 @@ void Mediatheque::search()
 
     if (found != 0)
     {
-        cout << found << " item(s) were found !" << endl;
+        cout << found << " item(s) was(were) found !" << endl;
         _searchOn = 1;
     }
     else
     {
-        cout << "No item matchs you search !" << endl;
+        cout << "No item(s) match(s) you search !" << endl;
     }
 
     
@@ -444,6 +460,7 @@ void Mediatheque::reset()
     {
         cout << "Deleting all items from the database ..." << endl;
         counter = 0;
+        loadCounter = 0;
         _Recherche.clear();
         _searchOn=0;
         Load = 0;

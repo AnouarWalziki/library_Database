@@ -158,7 +158,7 @@ int main()
                     cin >> choice ;
                     cout << "" << endl;
                     }
-                if(!cin.fail() && ((choice>=1 && choice<=11)) )
+                if(!cin.fail() && ((choice>=1 && choice<=8)) )
                 break;
                 }
             
@@ -185,10 +185,10 @@ int main()
                 case 6:
                     M->saveM();
                     break;
-                case 9:
+                case 7:
                     M->reLoad();
                     break;
-                case 10:
+                case 8:
                     leave = M->quit(M) ; 
                     break;         
             }

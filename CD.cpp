@@ -49,9 +49,6 @@ void CD::load(string Filename, int position)
         getline(txtFile ,_maisonProduc );
         getline(txtFile ,_nbrPiste );
         getline(txtFile ,_id);
-
-        cout << "Done !" << endl;
-        cout << "" << endl;
     }
     else
     {

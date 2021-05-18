@@ -62,9 +62,6 @@ void RessourceNum::load(string Filename,int position)
         getline(txtFile ,_chemin); 
         getline(txtFile ,_id ) ;
         txtFile.close() ;
-
-        cout << "Done !" << endl;
-        cout << "" << endl;
     }
     else 
     {

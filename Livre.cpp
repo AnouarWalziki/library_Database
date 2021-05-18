@@ -56,11 +56,6 @@ void Livre::load(string Filename,int position)
         getline(txtFile ,_collection );
         getline(txtFile ,_resume);
         getline(txtFile ,_id);
-        //p = txtFile.tellg();
-        //txtFile.close();
-        cout << "Done !" << endl;
-        cout << "" << endl;
-        //return p;
     }
     else
     {

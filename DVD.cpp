@@ -48,9 +48,6 @@ void DVD::load(string Filename, int position)
         getline(txtFile,_maisonProduc) ;
         getline(txtFile,  _nbrChapitres);
         getline(txtFile, _id );
-
-        cout << "Done !" << endl;
-        cout << "" << endl;
     }
     else
     {

@@ -53,9 +53,6 @@ void VHS::load(string Filename,int position)
         getline(txtFile ,_maisonProduc);
         getline(txtFile ,_id ) ;
         txtFile.close() ;
-
-        cout << "Done !" << endl;
-        cout << "" << endl;
     }
     else 
     {

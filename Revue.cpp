@@ -76,10 +76,6 @@ void Revue::show()
         getline(txtFile ,_resume) ; 
         getline(txtFile , _nbrArticle);  
         getline(txtFile ,_id ) ;
-
-        cout << "Done !" << endl ;
-        cout << "" << endl;
-
         txtFile.close() ;
     }
 
