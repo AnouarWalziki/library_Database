@@ -123,3 +123,8 @@ string DVD::showId()
 {
     return _id;
 }
+
+void DVD::setId(string ID)
+{
+    _id = ID;
+}

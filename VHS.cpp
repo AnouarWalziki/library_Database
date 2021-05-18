@@ -121,3 +121,8 @@ string VHS::showId()
 {
     return _id;
 }
+
+void VHS::setId(string ID)
+{
+    _id = ID;
+}

@@ -144,3 +144,8 @@ string RessourceNum::showId()
 {
     return _id;
 }
+
+void RessourceNum::setId(string ID)
+{
+    _id = ID;
+}

@@ -15,6 +15,7 @@ class Revue : public Livre
         int search(string chaine); 
         string showType(); 
         string showId(); 
+        void setId(string ID);
 
     private :
         string _editeur ;

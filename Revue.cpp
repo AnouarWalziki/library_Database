@@ -186,3 +186,8 @@ string Revue::showId()
 {
     return _id;
 }
+
+void Revue::setId(string ID)
+{
+    _id = ID;
+}

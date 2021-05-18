@@ -38,7 +38,6 @@ class Mediatheque
     void deleteId();
     void list() ;
     int quit(Mediatheque *M);
-    int checkItem(string itemID, string Filename);
    
 
     vector<Ressource*> _objects;

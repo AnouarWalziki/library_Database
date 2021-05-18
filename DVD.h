@@ -17,6 +17,7 @@ class DVD :  public Digital
         int search(string chaine); // indefinie
         string showType(); // indefinie
         string showId(); // indefinie
+        void setId(string ID);
     
     private:
         string _nbrChapitres ;

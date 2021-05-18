@@ -20,6 +20,7 @@ class Ressource
     virtual int search(string chaine)=0;
     virtual string showType()=0;
     virtual string showId()=0;
+    virtual void setId(string ID)=0;
 };
 
 #endif

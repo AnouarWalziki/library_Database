@@ -12,8 +12,8 @@ int main()
 {
    Mediatheque* M;
    M = new Mediatheque(); // creating a library object
-   LoginManager *L;
-   L = new LoginManager();
+   LoginManager *user;
+   user = new LoginManager();
 
 
    string id ; // id of the element to delete
@@ -32,12 +32,12 @@ int main()
        cout << "+-----------------------------+" << endl;
        cout << "" << endl;
        cout << "--------------------------------------" << endl;
-       L->login();
+       user->login();
        cout << "--------------------------------------" << endl;
    }
    while (leave != 1)
    {
-       if (L->access() == 1)
+       if (user->access() == 1)
        {
             cout << "" << endl;
             cout <<"+-----------+" << endl;
@@ -108,7 +108,7 @@ int main()
                     M->deleteId();
                     break ;
                 case 8:
-                    M->saveM();
+                    M->saveM(user);
                     break;
                 case 9:
                     M->reLoad();
@@ -183,7 +183,7 @@ int main()
                     M->clear();
                     break;
                 case 6:
-                    M->saveM();
+                    M->saveM(user);
                     break;
                 case 7:
                     M->reLoad();

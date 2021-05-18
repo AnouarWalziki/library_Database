@@ -64,34 +64,47 @@ void Mediatheque::add()
                 livre->setId(to_string(IdCounter));
                 IdCounter++;
                  _objects.push_back(livre);
+                
+                
                 break; 
             case 2:
                 Revue *revue;
                 revue = new Revue(0);
+                revue->setId(to_string(IdCounter));
+                IdCounter++;
                 _objects.push_back(revue);
+               
                 break;  
 
             case 3:
                 CD *cd;
                 cd = new CD(0);
+                cd->setId(to_string(IdCounter));
+                IdCounter++;
                 _objects.push_back(cd);
                 break;
 
             case 4:
                 DVD *dvd;               
                 dvd = new DVD(0);
+                dvd->setId(to_string(IdCounter));
+                IdCounter++;
                 _objects.push_back(dvd);
                 break;
 
             case 5:
                 VHS *vhs;
                 vhs = new VHS(0);
+                vhs->setId(to_string(IdCounter));
+                IdCounter++;
                 _objects.push_back(vhs);
                 break;  
 
             case 6:
                 RessourceNum *rsn;
                 rsn= new RessourceNum(0);
+                cd->setId(to_string(IdCounter));
+                IdCounter++;
                 _objects.push_back(rsn);
                 break;  
         }
@@ -105,6 +118,19 @@ void Mediatheque::loadM()
 {
     string type;
     int position(0);
+
+    ifstream Idfile("Id.txt");
+    if(Idfile)
+    {
+        Idfile >> IdCounter;
+    
+        Idfile.close() ;
+    }
+    else 
+    {
+        cout << "ERROR : Failed to open file : " << "Id.txt"<< endl ;
+    }
+
     if (_searchOn ==1)
     {
         //_Recherche.push_back(livre);
@@ -562,7 +588,7 @@ void Mediatheque::reset()
     if (decision =="Y")
     {
         cout << "Deleting all items from the database ..." << endl;
-        counter = 0;
+        IdCounter = 0;
         loadCounter = 0;
         _Recherche.clear();
         _searchOn=0;
@@ -670,11 +696,6 @@ int Mediatheque::quit(Mediatheque *M)
     return 0; // will be ignored
 }
 
-
-int Mediatheque::checkItem(string itemID, string Filename)
-{
-    
-}
 
 
 

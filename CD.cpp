@@ -125,3 +125,8 @@ string CD::showId()
 {
     return _id;
 }
+
+void CD::setId(string ID)
+{
+    _id = ID;
+}
