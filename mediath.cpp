@@ -16,10 +16,14 @@ Mediatheque::Mediatheque()
 Mediatheque::~Mediatheque()
 {
     cout << "Deleting the media library database ..." << endl;
-    //for (int i=0; i< _objects.size(); i++)
-    //{
-    //   delete _objects.at(i);
-    //}
+    for (int i=0; i< _objects.size(); i++)
+    {
+        delete _objects.at(i);
+    }
+    for (int i=0; i< _Recherche.size(); i++)
+    {
+        delete _Recherche.at(i);
+    }
      _objects.clear();
      _Recherche.clear();
 }
