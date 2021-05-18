@@ -568,8 +568,10 @@ int Mediatheque::quit(Mediatheque *M)
 }
 
 
-
-
+int Mediatheque::checkItem(string itemID, string Filename)
+{
+    
+}
 
 
 
