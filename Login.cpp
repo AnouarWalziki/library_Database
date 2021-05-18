@@ -1,36 +1,64 @@
 #include "Login.h"
 
 
-
+int flag =  0 ;
 
 LoginManager :: LoginManager()
 {
     _access = 0 ;
+    _end = 0 ;
 }
 
 void LoginManager::login() 
 {
-    cout << "Please Enter your username. \nUsername : "<< endl ;
-    cin  >> _UsernameAttempt ;
-
-    cout << "Please Enter your password. \nPassword : "<< endl ;
+    string decision ;
+    cout << "Please enter password. \nPassword : "<< endl ;
     cin  >> _PasswordAttempt ;
 
-    if (check(_UsernameAttempt , "username.txt") & check(_PasswordAttempt , "password.txt" ))
+    while (_end != 2)
     {
-        cout << "You have logged in successfully " << endl ;
-        _access = 1 ; 
-    }
-    else 
-    {
-        cout << "The username or the password is incorrect" << endl;
-        _access = 0 ;
-    }
+        if ( _PasswordAttempt == "123456789")
+        {   
+            if (flag == 0)
+            {
+                cout << "You have logged in successfully " << endl ;
+                _access = 1 ; 
+                flag = 1 ;   
+                
+            }
+            return ;
+        }
+        else 
+        {
+            cout << "The password is incorrect" << endl;
+            cout << "If you want to check in as a client press[y] , press anything else otherwise "<< endl;
+            cin >> decision ;
 
+            if (decision == "y")
+            {
+                _access = 0 ;
+                return ;
+            }
+            else
+            {   
+                _end ++;
+                login();
+            }
+            
+            
+        }   
+    }
+    if (flag == 0 )
+    {
+        flag = 1;
+        cout <<"Password wrong three times , Checking in as a client .." << endl ;
+    }
+    _access = 0 ;
+    return ;
 }
 
 
-bool LoginManager::check(string word , string Filename ) 
+/*bool LoginManager::check(string word , string Filename ) 
 {
     string line ;
     ifstream txtFile(Filename) ;
@@ -50,7 +78,9 @@ bool LoginManager::check(string word , string Filename )
         cout << " Error : Cannot open file " << endl ;
         return false ;
     }
-}
+}*/
+
+
 int LoginManager::access()
 {
     return _access ;
@@ -61,6 +91,7 @@ int main()
     LoginManager *app ;
     app = new LoginManager ;
     app->login() ;
+    //cout << app->access() << endl;
     return 0;
 }
 

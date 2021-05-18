@@ -17,11 +17,9 @@ class LoginManager
 
 
     private : 
-        string _Password;
-        string _Username;
-        string _UsernameAttempt;
         string _PasswordAttempt;
         int _access ; 
+        int _end ;
 } ;
 
 
