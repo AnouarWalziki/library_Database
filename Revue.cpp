@@ -86,7 +86,7 @@ void Revue::show()
 
  void Revue::save(string Filename)
  {
-    ofstream txtFile(Filename) ;
+    ofstream txtFile(Filename, ios::app) ;
     if (txtFile)
     {   txtFile << _type <<endl;
         txtFile << _autheur <<endl;
@@ -100,9 +100,6 @@ void Revue::show()
         txtFile << _id <<endl;
 
         txtFile.close() ;
-
-        cout << "Done !" << endl;
-        cout << "" << endl; 
     }
     else 
     {

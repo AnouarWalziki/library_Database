@@ -317,6 +317,8 @@ void Mediatheque::saveM(LoginManager *user)
 {
     string decision;
     string Filename;
+    int saveCounter(0);
+
     cout << "Please type the text file name where you want to save current items :" <<endl;
     cin >> Filename;
 
@@ -351,16 +353,17 @@ void Mediatheque::saveM(LoginManager *user)
                 for (int i=0; i< _Recherche.size(); i++)
                 {
                     _Recherche.at(i)->save(Filename);
+                    saveCounter++;
                 }
                 
-                cout << "Search result(s) has(have) been saved !" << endl;
+                cout << saveCounter << " search's result(s) has(have) been saved !" << endl;
                 cout << "--------------------------------------" << endl;
                 return;
             } 
     }
     else if (_searchOn ==0)
     {
-        if (user->access() == 0)
+        if (user->access() == 0) //user is not admin
         {
             if (Filename == "items.txt")
             {
@@ -378,15 +381,16 @@ void Mediatheque::saveM(LoginManager *user)
                 for (int i=0; i< _objects.size(); i++)
                 {
                     _objects.at(i)->save(Filename);
+                    saveCounter++;
                 }
 
-                cout << "\n The database has been saved !" << endl;
+                cout << saveCounter << " item(s) has(have) been saved !" << endl;
                 cout << "--------------------------------------" << endl;
                 return;
                 
             } 
         }
-        else if (user->access() == 1)
+        else if (user->access() == 1) //user is admin
         {
             if (Filename == "items.txt")
             {
@@ -403,10 +407,11 @@ void Mediatheque::saveM(LoginManager *user)
                         for (int i=0; i< _objects.size(); i++)
                         {
                             _objects.at(i)->save(Filename);
+                            saveCounter++;
                         }
 
 
-                        cout << "\n The database has been updated !" << endl;
+                        cout << saveCounter << " item(s) has(have) been saved !" << endl;
                         cout << "--------------------------------------" << endl;
                         return;
                     } 
@@ -432,9 +437,10 @@ void Mediatheque::saveM(LoginManager *user)
                 for (int i=0; i< _objects.size(); i++)
                 {
                     _objects.at(i)->save(Filename);
+                    saveCounter++;
                 }
 
-                cout << "\n The database has been saved !" << endl;
+                cout << saveCounter << " item(s) has(have) been saved !" << endl;
                 cout << "--------------------------------------" << endl;
                 return;
             }
@@ -627,7 +633,8 @@ void Mediatheque::deleteId()
         if ( chaine == id ) 
             {
                _objects.erase(_objects.begin() + i);
-               cout << "The item with the id : \" "<< id << " \" is deleted. \n" << endl ;
+               cout << "The item with the id : \" "<< id << " \" has been deleted. \n" << endl ;
+               cout << "--------------------------------------" << endl;
                return;
             }
     }

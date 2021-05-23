@@ -29,6 +29,7 @@ Livre::Livre(int a)
     cout << "Book added successfully !\n" <<endl ;
 
 }
+
 void Livre::show()
 {
     cout << "Item's type : Book" << endl;
@@ -67,7 +68,6 @@ void Livre::load(string Filename,int position)
 
 void Livre::save(string Filename)
 {
-
     ofstream txtFile(Filename , ios::app) ;
     if(txtFile)    
     {
@@ -81,9 +81,6 @@ void Livre::save(string Filename)
         txtFile << _id <<endl;
 
         txtFile.close();
-        
-        cout << "Done !" << endl;
-        cout << "" << endl;
     }
     else
     {

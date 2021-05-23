@@ -58,17 +58,15 @@ void VHS::load(string Filename,int position)
 
 void VHS::save(string Filename)
 {
-    ofstream txtFile(Filename) ;
+    ofstream txtFile(Filename, ios::app) ;
     if(txtFile)
     {
+    txtFile << _type <<endl;
     txtFile << _autheur <<endl;
     txtFile << _duree <<endl;
     txtFile << _maisonProduc <<endl;
     txtFile << _id <<endl;
-    txtFile.close() ;
-
-    cout << "Done !" << endl;
-    cout << "" << endl;
+    txtFile.close();
     }
     else 
     {

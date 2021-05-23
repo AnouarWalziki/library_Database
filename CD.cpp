@@ -66,9 +66,6 @@ void CD::save(string Filename)
         txtFile << _id  <<endl;
 
         txtFile.close();
-
-        cout << "Done !" << endl;
-        cout << "" << endl;
     }
     else
     {

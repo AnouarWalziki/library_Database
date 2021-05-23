@@ -68,7 +68,7 @@ void RessourceNum::load(string Filename,int position)
 
 void RessourceNum::save(string Filename)
 {
-    ofstream txtFile(Filename) ;
+    ofstream txtFile(Filename, ios::app) ;
     if(txtFile)
     {
     txtFile << _type <<endl;
@@ -79,9 +79,6 @@ void RessourceNum::save(string Filename)
     txtFile << _chemin <<endl;
     txtFile << _id <<endl;
     txtFile.close() ;
-
-    cout << "Done !" << endl;
-    cout << "" << endl;
     }
     else 
     {
