@@ -5,9 +5,8 @@
 VHS::VHS(int a)
 {
     cout << "Adding a VHS.. \n" <<endl ;
-    _type = "Livre";
-
-    cout << "Adding a VHS ...\n" <<endl ;
+    _type = "VHS";
+    
     cin.ignore();
     cout << "Enter the new VHS item's author"<< endl ;
     //getline(cin,_autheur,'\n');
@@ -18,9 +17,6 @@ VHS::VHS(int a)
 
     cout << "Enter the new VHS item's house of production"<< endl ;
     getline(cin, _maisonProduc);
-
-    cout << "Enter the new VHS item's id"<< endl ;
-    getline(cin, _id);
  
     cout << "VHS added successfully !\n" <<endl ;
 }

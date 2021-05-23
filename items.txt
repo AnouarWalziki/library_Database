@@ -1,32 +1,7 @@
-Livre
-The book of wonders
-anouar
-22/12/1999
-123
-zara
-it is a good boook
-L0
-Livre
-cool man
-assal
-11/04/2011
-143
-nice
-it a pretty good book
-L1
-Livre
-The book of wonders
-anouar
-22/12/1999
-123
-zara
-it is a good boook
-L0
-Livre
-cool man
-assal
-11/04/2011
-143
-nice
-it a pretty good book
-L1
+RessourceNum
+qdfsf
+dsfsf
+sdfsf
+sdfdsqfqgf
+dsgsgsd
+2

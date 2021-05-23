@@ -6,6 +6,8 @@ Revue::Revue(int a )
     cout << "Adding a magazine... \n" << endl;
     cin.ignore() ;
 
+    _type = "Revue";
+
     cout << "Enter the new magazine item's author"<< endl ;
     getline(cin,_autheur);
 
@@ -30,16 +32,13 @@ Revue::Revue(int a )
     cout << "Enter the new magazine item's nombre of articles "<< endl ;
     getline(cin, _nbrArticle);
 
-    cout << "Enter the new magazine item's id"<< endl ;
-    getline(cin,_id);
-
     cout << "Magazine added successfully !\n" <<endl ;
 
 }
 
 void Revue::show()
 {
-    cout << "Item's type : Magazine " << endl ;
+    cout << "Item's type : Magazine " << _type  << endl ;
 
     cout << "Magazine's Author :" << _autheur << endl;
 
@@ -89,7 +88,7 @@ void Revue::show()
  {
     ofstream txtFile(Filename) ;
     if (txtFile)
-    {
+    {   txtFile << _type <<endl;
         txtFile << _autheur <<endl;
         txtFile << _date <<endl;
         txtFile << _nbrPage <<endl;

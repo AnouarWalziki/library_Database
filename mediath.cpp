@@ -103,7 +103,7 @@ void Mediatheque::add()
             case 6:
                 RessourceNum *rsn;
                 rsn= new RessourceNum(0);
-                cd->setId(to_string(IdCounter));
+                rsn->setId(to_string(IdCounter));
                 IdCounter++;
                 _objects.push_back(rsn);
                 break;  
@@ -196,6 +196,15 @@ void Mediatheque::loadM()
                     vhs = new VHS();
                     vhs->load(_currentFile,position);
                     _objects.push_back(vhs);
+                    loadCounter++;
+                }
+
+                if (type == "RessourceNum")
+                {
+                    RessourceNum *rsn;
+                    rsn = new RessourceNum();
+                    rsn->load(_currentFile,position);
+                    _objects.push_back(rsn);
                     loadCounter++;
                 }
             

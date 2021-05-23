@@ -19,9 +19,6 @@ DVD::DVD(int a)
     cout << "Enter the new DVD item's number of chapiters" << endl ;
     getline(cin,_nbrChapitres);
 
-    cout << "Enter the new DVD item's id" << endl ;
-    getline(cin,_id);
-
     cout << "DVD added successfully !\n" <<endl ;
 
 }

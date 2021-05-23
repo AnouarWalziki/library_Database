@@ -19,9 +19,6 @@ CD::CD(int a)
     cout << "Enter the new CD item's number of tracks" << endl ;
     getline(cin,_nbrPiste);
 
-    cout << "Enter the new CD item's id" << endl ;
-    getline(cin, _id);
-
     cout << "CD added successfully !\n" <<endl ;
 
 }

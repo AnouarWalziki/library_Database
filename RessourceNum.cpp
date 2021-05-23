@@ -23,9 +23,6 @@ RessourceNum::RessourceNum(int a)
 
     cout << "Enter the new digital ressource item's path : "<< endl ;
     getline(cin, _chemin);
-
-    cout << "Enter the new digital ressource item's id : "<< endl ;
-    getline(cin, _id);
  
     cout << "Digital ressource added successfully !\n" <<endl ;
 }
@@ -74,6 +71,7 @@ void RessourceNum::save(string Filename)
     ofstream txtFile(Filename) ;
     if(txtFile)
     {
+    txtFile << _type <<endl;
     txtFile << _nom <<endl;
     txtFile << _autheur <<endl;
     txtFile << _typeFile <<endl;
