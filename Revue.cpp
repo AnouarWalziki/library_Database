@@ -73,6 +73,7 @@ void Revue::show()
         getline(txtFile ,_collection); 
         getline(txtFile ,_titre) ;
         getline(txtFile ,_resume) ; 
+        getline(txtFile ,_editeur);
         getline(txtFile , _nbrArticle);  
         getline(txtFile ,_id ) ;
         txtFile.close() ;

@@ -44,7 +44,6 @@ void Livre::show()
 
 void Livre::load(string Filename,int position)
 {
-    //int p(0);
     ifstream txtFile(Filename , ios::app) ;
     if(txtFile)    
     {
@@ -61,7 +60,6 @@ void Livre::load(string Filename,int position)
     else
     {
         cout << "ERREUR: Impossible d'ouvrir le fichier : " << Filename << endl;
-        //return 0;
     }
 
 }

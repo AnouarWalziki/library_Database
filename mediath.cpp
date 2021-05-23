@@ -190,7 +190,7 @@ void Mediatheque::loadM()
                     loadCounter++;
                 }
 
-                if (type == "Revue")
+                if (type == "VHS")
                 {
                     VHS *vhs;
                     vhs = new VHS();
@@ -238,78 +238,93 @@ void Mediatheque::reLoad()
     int position = 0;
     string type;
 
-    if (Load == 0)
+    if (_searchOn ==0)
     {
-        cout << "No file have been loaded yet ! Please first, use \"load\" option in the main menu. " << endl;
-        cout << "--------------------------------------" << endl;
-        return;
-    }
-    _objects.clear(); //deleting all current database items
-
-    cout << "Updating database items ..." << endl;
-    cout << "" << endl;
-    
-    ifstream txtFile(_currentFile , ios::app) ; //adding items from file used to first load items into the database
-        if(txtFile)    
+        if (Load == 0)
         {
-            while(txtFile.peek() != EOF)
+            cout << "No file have been loaded yet ! Please first, use \"load\" option in the main menu. " << endl;
+            cout << "--------------------------------------" << endl;
+            return;
+        }
+        _objects.clear(); //deleting all current database items
+
+        cout << "Updating database items ..." << endl;
+        cout << "" << endl;
+        
+        ifstream txtFile(_currentFile , ios::app) ; //adding items from file used to first load items into the database
+            if(txtFile)    
             {
-                getline(txtFile ,type);
-                position = txtFile.tellg();
-
-                if (type =="Livre")
+                while(txtFile.peek() != EOF)
                 {
-                    Livre *livre;
-                    livre = new Livre();
-                    livre->load(_currentFile,position);
-                    _objects.push_back(livre);
-                }
+                    getline(txtFile ,type);
+                    position = txtFile.tellg();
 
-                if (type =="CD")
-                {
-                    CD *cd;
-                    cd = new CD();
-                    cd->load(_currentFile,position);
-                    _objects.push_back(cd);
-                }
+                    if (type =="Livre")
+                    {
+                        Livre *livre;
+                        livre = new Livre();
+                        livre->load(_currentFile,position);
+                        _objects.push_back(livre);
+                    }
 
-                if (type =="DVD")
-                {
-                    DVD *dvd;
-                    dvd = new DVD();
-                    dvd->load(_currentFile,position);
-                    _objects.push_back(dvd);
-                }
+                    if (type =="CD")
+                    {
+                        CD *cd;
+                        cd = new CD();
+                        cd->load(_currentFile,position);
+                        _objects.push_back(cd);
+                    }
 
-                if (type == "Revue")
-                {
-                    Revue *revue;
-                    revue = new Revue();
-                    revue->load(_currentFile,position);
-                    _objects.push_back(revue);
-                }
+                    if (type =="DVD")
+                    {
+                        DVD *dvd;
+                        dvd = new DVD();
+                        dvd->load(_currentFile,position);
+                        _objects.push_back(dvd);
+                    }
 
-                if (type == "Revue")
-                {
-                    VHS *vhs;
-                    vhs = new VHS();
-                    vhs->load(_currentFile,position);
-                    _objects.push_back(vhs);
-                }
-            
+                    if (type == "Revue")
+                    {
+                        Revue *revue;
+                        revue = new Revue();
+                        revue->load(_currentFile,position);
+                        _objects.push_back(revue);
+                    }
+
+                    if (type == "VHS")
+                    {
+                        VHS *vhs;
+                        vhs = new VHS();
+                        vhs->load(_currentFile,position);
+                        _objects.push_back(vhs);
+                    }
+                    
+                    if (type == "RessourceNum")
+                    {
+                        RessourceNum *rsn;
+                        rsn = new RessourceNum();
+                        rsn->load(_currentFile,position);
+                        _objects.push_back(rsn);
+                        loadCounter++;
+                    }         
+                }             
+
+                txtFile.close();
+            }
+            else
+            {
+                cout << "ERREUR: Impossible d'ouvrir le fichier : " << _currentFile << endl;
             }
 
-            txtFile.close();
-        }
-        else
-        {
-            cout << "ERREUR: Impossible d'ouvrir le fichier : " << _currentFile << endl;
-        }
-
-        cout << "" << endl;
-        cout <<"Database updated !" << endl;
+            cout << "" << endl;
+            cout <<"Database updated !" << endl;
+            cout << "--------------------------------------" << endl;
+    }
+    else if (_searchOn ==1)
+    {
+        cout << "You can't reload database beacause you are in search mode, please use \"Clear log\" command in the main menu to quit this mode." << endl;
         cout << "--------------------------------------" << endl;
-
+    }
 }
 
 
@@ -319,7 +334,7 @@ void Mediatheque::saveM(LoginManager *user)
     string Filename;
     int saveCounter(0);
 
-    cout << "Please type the text file name where you want to save current items :" <<endl;
+    cout << "Please type the text file name where you want to save current items :";
     cin >> Filename;
 
     ofstream Idfile("Id.txt");
