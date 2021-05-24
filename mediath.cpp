@@ -118,7 +118,10 @@ void Mediatheque::loadM()
 {
     string type;
     int position(0);
-
+    loadCounter = 0;
+    _objects.clear(); //deleting all current database items
+    IdCounter = 0;
+/*
     ifstream Idfile("Id.txt");
     if(Idfile)
     {
@@ -130,7 +133,7 @@ void Mediatheque::loadM()
     {
         cout << "ERROR : Failed to open file : " << "Id.txt"<< endl ;
     }
-
+*/
     if (_searchOn ==1)
     {
         //_Recherche.push_back(livre);
@@ -161,6 +164,7 @@ void Mediatheque::loadM()
                     livre->load(_currentFile,position);
                     _objects.push_back(livre);
                     loadCounter++;
+                    IdCounter++;
                 }
 
                 if (type =="CD")
@@ -170,6 +174,7 @@ void Mediatheque::loadM()
                     cd->load(_currentFile,position);
                     _objects.push_back(cd);
                     loadCounter++;
+                    IdCounter++;
                 }
 
                 if (type =="DVD")
@@ -188,6 +193,7 @@ void Mediatheque::loadM()
                     revue->load(_currentFile,position);
                     _objects.push_back(revue);
                     loadCounter++;
+                    IdCounter++;
                 }
 
                 if (type == "VHS")
@@ -206,6 +212,7 @@ void Mediatheque::loadM()
                     rsn->load(_currentFile,position);
                     _objects.push_back(rsn);
                     loadCounter++;
+                    IdCounter++;
                 }
             
             }
@@ -237,6 +244,8 @@ void Mediatheque::reLoad()
 {
     int position = 0;
     string type;
+    IdCounter = 0;
+    loadCounter = 0;
 
     if (_searchOn ==0)
     {
@@ -265,6 +274,8 @@ void Mediatheque::reLoad()
                         livre = new Livre();
                         livre->load(_currentFile,position);
                         _objects.push_back(livre);
+                        loadCounter++;
+                        IdCounter++;
                     }
 
                     if (type =="CD")
@@ -273,6 +284,8 @@ void Mediatheque::reLoad()
                         cd = new CD();
                         cd->load(_currentFile,position);
                         _objects.push_back(cd);
+                        loadCounter++;
+                        IdCounter++;
                     }
 
                     if (type =="DVD")
@@ -281,6 +294,8 @@ void Mediatheque::reLoad()
                         dvd = new DVD();
                         dvd->load(_currentFile,position);
                         _objects.push_back(dvd);
+                        loadCounter++;
+                        IdCounter++;
                     }
 
                     if (type == "Revue")
@@ -289,6 +304,8 @@ void Mediatheque::reLoad()
                         revue = new Revue();
                         revue->load(_currentFile,position);
                         _objects.push_back(revue);
+                        loadCounter++;
+                        IdCounter++;
                     }
 
                     if (type == "VHS")
@@ -297,6 +314,8 @@ void Mediatheque::reLoad()
                         vhs = new VHS();
                         vhs->load(_currentFile,position);
                         _objects.push_back(vhs);
+                        loadCounter++;
+                        IdCounter++;
                     }
                     
                     if (type == "RessourceNum")
@@ -306,6 +325,7 @@ void Mediatheque::reLoad()
                         rsn->load(_currentFile,position);
                         _objects.push_back(rsn);
                         loadCounter++;
+                        IdCounter++;
                     }         
                 }             
 
@@ -316,6 +336,16 @@ void Mediatheque::reLoad()
                 cout << "ERREUR: Impossible d'ouvrir le fichier : " << _currentFile << endl;
             }
 
+            if (loadCounter != 0)
+            {
+                cout << loadCounter << " item(s) was(were) loaded!" << endl;
+
+            }
+            else
+            {
+                cout << "No item(s) was(were) loaded)!" << endl;
+            }
+        
             cout << "" << endl;
             cout <<"Database updated !" << endl;
             cout << "--------------------------------------" << endl;
@@ -337,6 +367,7 @@ void Mediatheque::saveM(LoginManager *user)
     cout << "Please type the text file name where you want to save current items :";
     cin >> Filename;
 
+/*
     ofstream Idfile("Id.txt");
     if(Idfile)
     {
@@ -348,7 +379,7 @@ void Mediatheque::saveM(LoginManager *user)
     {
         cout << "ERROR : Failed to open file : " << "Id.txt"<< endl ;
     }
-
+*/
     if (_searchOn == 1)
     {
             if (Filename == "items.txt")
@@ -502,7 +533,8 @@ void Mediatheque::search()
     vector<Ressource*> _RechercheTmp;
     
     cout << "Please type your search :";
-    cin >> chaine;
+    cin.ignore();
+    getline(cin,chaine);
 
     if (_searchOn ==0) //first search
     {
