@@ -24,11 +24,9 @@ int main()
    {
        flag = 1;
        cout << "+-----------------------------+" << endl;
-       cout << "|Library database manager V0.0|" << endl;
+       cout << "|Library database manager     |" << endl;
        cout << "|Programmed by :              |" << endl;
        cout << "|Anouar WALZIKI               |" << endl;
-       cout << "|&                            |" << endl;
-       cout << "|Souhail Assal                |" << endl;
        cout << "+-----------------------------+" << endl;
        cout << "" << endl;
        cout << "--------------------------------------" << endl;
